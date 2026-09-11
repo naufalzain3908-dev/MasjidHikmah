@@ -1,0 +1,54 @@
+<!doctype html>
+<html lang="id">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <title>Admin • Masjid Digital</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Plus+Jakarta+Sans:wght@700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body class="admin-page">
+<header class="topbar"><div class="container nav"><a class="brand" href="index.html"><span class="brand-mark">م</span>Masjid Digital</a><a href="index.html">← Kembali ke website</a></div></header>
+<main class="section">
+<div class="container admin-container">
+  <div id="loginPanel" class="auth-card card">
+    <span class="eyebrow">AREA PENGURUS</span><h1>Login Admin</h1>
+    <p class="muted">Gunakan akun Supabase Auth yang dibuat oleh pengurus.</p>
+    <form id="loginForm"><input id="email" type="email" placeholder="Email" required><input id="password" type="password" placeholder="Password" required><button class="btn primary" type="submit">Masuk</button><p id="loginError" class="error"></p></form>
+  </div>
+  <div id="dashboard" class="hidden">
+    <div class="admin-header"><div><span class="eyebrow">DASHBOARD</span><h1>Kelola Masjid</h1></div><button id="logoutBtn" class="btn ghost">Keluar</button></div>
+    <div class="admin-tabs"><button class="tab active" data-tab="programs">Program</button><button class="tab" data-tab="cash">Kas</button><button class="tab" data-tab="announcements">Pengumuman</button><button class="tab" data-tab="settings">Profil</button></div>
+
+    <section id="tab-programs" class="tab-panel">
+      <div class="panel-head"><h2>Program</h2><button id="addProgram" class="btn primary">+ Program</button></div>
+      <div id="adminPrograms" class="admin-list"></div>
+    </section>
+    <section id="tab-cash" class="tab-panel hidden">
+      <div class="panel-head"><h2>Kas Masjid</h2><button id="addCash" class="btn primary">+ Transaksi</button></div>
+      <div id="adminCash" class="admin-list"></div>
+    </section>
+    <section id="tab-announcements" class="tab-panel hidden">
+      <div class="panel-head"><h2>Pengumuman</h2><button id="addAnnouncement" class="btn primary">+ Pengumuman</button></div>
+      <div id="adminAnnouncements" class="admin-list"></div>
+    </section>
+    <section id="tab-settings" class="tab-panel hidden">
+      <h2>Profil Masjid</h2>
+      <form id="settingsForm" class="form-grid">
+        <input id="sName" placeholder="Nama masjid" required><input id="sAddress" placeholder="Alamat">
+        <input id="sContact" placeholder="Nomor kontak"><input id="sEmail" type="email" placeholder="Email">
+        <textarea id="sDescription" class="full" placeholder="Deskripsi"></textarea>
+        <button class="btn primary full" type="submit">Simpan profil</button>
+      </form>
+    </section>
+  </div>
+</div>
+</main>
+<div id="adminModal" class="modal hidden"><div class="modal-backdrop" data-admin-close></div><article class="modal-box"><button class="modal-close" data-admin-close>×</button><h2 id="formTitle"></h2><form id="entityForm"></form></article></div>
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+<script src="config.js"></script>
+<script src="admin.js"></script>
+</body>
+</html>

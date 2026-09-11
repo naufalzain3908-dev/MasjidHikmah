@@ -1,0 +1,120 @@
+<!doctype html>
+<html lang="id">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <title>Masjid Digital</title>
+  <meta name="description" content="Portal informasi masjid: jadwal shalat, program, kas, pengumuman, dan informasi layanan.">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Plus+Jakarta+Sans:wght@600;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+<header class="topbar">
+  <div class="container nav">
+    <a class="brand" href="#beranda"><span class="brand-mark">م</span><span id="mosqueName">Masjid Digital</span></a>
+    <nav>
+      <a href="#shalat">Shalat</a>
+      <a href="#program">Program</a>
+      <a href="#kas">Kas</a>
+      <a href="#pengumuman">Pengumuman</a>
+      <a href="#tentang">Tentang</a>
+    </nav>
+    <a class="admin-link" href="admin.html">Admin</a>
+  </div>
+</header>
+
+<main>
+<section id="beranda" class="hero">
+  <div class="container hero-grid">
+    <div>
+      <span class="eyebrow">PORTAL INFORMASI MASJID</span>
+      <h1>Masjid yang informatif, terbuka, dan dekat dengan jamaah.</h1>
+      <p id="heroText">Satu tempat untuk melihat jadwal shalat, kegiatan, transparansi kas, dan informasi masjid.</p>
+      <div class="hero-actions">
+        <a class="btn primary" href="#shalat">Lihat jadwal shalat</a>
+        <a class="btn ghost" href="#program">Lihat program</a>
+      </div>
+    </div>
+    <div class="next-prayer card">
+      <div class="muted">WAKTU SHALAT BERIKUTNYA</div>
+      <div id="nextPrayerName" class="next-name">Memuat...</div>
+      <div id="nextPrayerTime" class="next-time">--:--</div>
+      <div id="countdown" class="countdown">--:--:--</div>
+      <div id="todayDate" class="muted">Memuat tanggal...</div>
+    </div>
+  </div>
+</section>
+
+<section id="shalat" class="section">
+  <div class="container">
+    <div class="section-head">
+      <div><span class="eyebrow">JADWAL HARI INI</span><h2>Waktu Shalat</h2></div>
+      <div class="location-pill" id="locationLabel">Memuat lokasi...</div>
+    </div>
+    <div id="prayerGrid" class="prayer-grid"></div>
+    <p class="note">Jadwal dihitung otomatis dari layanan jadwal shalat. Untuk ketepatan lokal, pengurus dapat mengatur koordinat dan metode perhitungan di <code>config.js</code>.</p>
+  </div>
+</section>
+
+<section id="program" class="section alt">
+  <div class="container">
+    <div class="section-head"><div><span class="eyebrow">KEGIATAN</span><h2>Program Masjid</h2></div><button class="text-btn" id="refreshPrograms">Muat ulang</button></div>
+    <div id="programGrid" class="program-grid"><div class="loading">Memuat program...</div></div>
+  </div>
+</section>
+
+<section id="kas" class="section">
+  <div class="container">
+    <div class="section-head"><div><span class="eyebrow">TRANSPARANSI</span><h2>Kas Masjid</h2></div><span id="cashPeriod" class="muted"></span></div>
+    <div class="cash-summary">
+      <div class="cash-card"><span>Total pemasukan</span><strong id="incomeTotal">Rp0</strong></div>
+      <div class="cash-card"><span>Total pengeluaran</span><strong id="expenseTotal">Rp0</strong></div>
+      <div class="cash-card highlight"><span>Saldo</span><strong id="balanceTotal">Rp0</strong></div>
+    </div>
+    <div class="table-wrap">
+      <table><thead><tr><th>Tanggal</th><th>Jenis</th><th>Keterangan</th><th>Jumlah</th></tr></thead>
+      <tbody id="cashTable"><tr><td colspan="4">Memuat...</td></tr></tbody></table>
+    </div>
+  </div>
+</section>
+
+<section id="pengumuman" class="section alt">
+  <div class="container">
+    <div class="section-head"><div><span class="eyebrow">INFO TERBARU</span><h2>Pengumuman</h2></div></div>
+    <div id="announcementList" class="announcement-list"></div>
+  </div>
+</section>
+
+<section id="tentang" class="section">
+  <div class="container about-grid">
+    <div><span class="eyebrow">TENTANG MASJID</span><h2 id="aboutTitle">Masjid Digital</h2><p id="aboutDescription">Informasi masjid akan tampil di sini.</p></div>
+    <div class="info-card">
+      <div><span>Alamat</span><strong id="aboutAddress">-</strong></div>
+      <div><span>Kontak</span><strong id="aboutContact">-</strong></div>
+      <div><span>Email</span><strong id="aboutEmail">-</strong></div>
+    </div>
+  </div>
+</section>
+</main>
+
+<footer><div class="container footer-inner"><span id="footerName">Masjid Digital</span><span>© <span id="year"></span> • Portal Masjid</span></div></footer>
+
+<div id="modal" class="modal hidden" aria-hidden="true">
+  <div class="modal-backdrop" data-close></div>
+  <article class="modal-box">
+    <button class="modal-close" data-close aria-label="Tutup">×</button>
+    <span id="modalCategory" class="eyebrow"></span>
+    <h2 id="modalTitle"></h2>
+    <div id="modalMeta" class="modal-meta"></div>
+    <p id="modalDescription"></p>
+    <div id="modalExtra"></div>
+  </article>
+</div>
+
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+<script src="config.js"></script>
+<script src="app.js"></script>
+</body>
+</html>
